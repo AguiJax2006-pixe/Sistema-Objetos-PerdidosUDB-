@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#145c91">
+    <title>Crear cuenta · BackToMe</title>
+    <link rel="stylesheet" href="css/acceso.css">
+  </head>
+  <body>
+    <main class="auth-layout">
+      <aside class="story">
+        <a class="brand" href="index.html">
+          <img src="imagenes.img/logo-udb.png" alt="Universidad Don Bosco">
+          <span class="brand-name">Back<span>To</span>Me</span>
+        </a>
+        <div class="campus-art" aria-hidden="true"></div>
+
+        <div class="story-content">
+          <div class="eyebrow">COMUNIDAD UDB</div>
+          <h1>Lo que se pierde, puede volver.</h1>
+          <p class="story-copy">
+            Únete para publicar objetos, encontrar pertenencias y coordinar su entrega con la comunidad universitaria.
+          </p>
+          <div class="steps">
+            <div class="step"><span class="step-number">1</span>Regístrate con tus datos universitarios</div>
+            <div class="step"><span class="step-number">2</span>Confirma tu correo electrónico</div>
+            <div class="step"><span class="step-number">3</span>Conecta y ayuda a la comunidad</div>
+          </div>
+        </div>
+
+        <div class="story-foot">BackToMe · Objetos perdidos y encontrados</div>
+      </aside>
+
+      <button
+        class="theme-toggle"
+        type="button"
+        data-theme-toggle
+        aria-label="Cambiar tema"
+        title="Cambiar tema"
+      >
+        ☾
+      </button>
+
+      <section class="form-side">
+        <div class="form-wrap register-wrap">
+          <a class="brand mobile-brand" href="index.html">
+            <img src="imagenes.img/logo-udb.png" alt="Universidad Don Bosco">
+            <span class="brand-name">Back<span>To</span>Me</span>
+          </a>
+          <div class="form-icon" aria-hidden="true">＋</div>
+          <h2>Crea tu cuenta</h2>
+          <p class="form-lead">Regístrate con tu información universitaria.</p>
+
+          <div id="mensaje" class="alert" role="alert"></div>
+
+          <form id="formRegistro" novalidate>
+            <div class="field-grid">
+              <div class="field">
+                <label for="nombre">Nombre</label>
+                <input id="nombre" placeholder="Nombre" autocomplete="given-name">
+              </div>
+              <div class="field">
+                <label for="apellido">Apellido</label>
+                <input id="apellido" placeholder="Apellido" autocomplete="family-name">
+              </div>
+              <div class="field">
+                <label for="carnet">Carnet estudiantil</label>
+                <input id="carnet" placeholder="Tu carnet">
+              </div>
+              <div class="field">
+                <label for="carrera">Carrera</label>
+                <input id="carrera" placeholder="Tu carrera">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="correo">Correo electrónico</label>
+              <input
+                type="email"
+                id="correo"
+                placeholder="nombre@udb.edu.sv"
+                autocomplete="email"
+              >
+            </div>
+
+            <div class="field-grid">
+              <div class="field">
+                <label for="password">Contraseña</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Crea una contraseña"
+                  autocomplete="new-password"
+                >
+              </div>
+              <div class="field">
+                <label for="confirmarPassword">Confirmar contraseña</label>
+                <input
+                  type="password"
+                  id="confirmarPassword"
+                  placeholder="Repite la contraseña"
+                  autocomplete="new-password"
+                >
+              </div>
+            </div>
+
+            <p class="verify-note">
+              Al crear tu cuenta, te enviaremos un enlace para verificar tu correo electrónico.
+            </p>
+            <button class="primary-button" type="submit">Crear cuenta&nbsp; →</button>
+          </form>
+
+          <p class="form-switch">
+            ¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/validaciones.js"></script>
+    <script src="js/registro.js"></script>
+  </body>
+</html>

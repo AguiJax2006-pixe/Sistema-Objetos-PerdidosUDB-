@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#145c91">
+    <title>BackToMe · Comunidad UDB</title>
+    <link rel="stylesheet" href="css/acceso.css">
+  </head>
+  <body>
+    <main class="entry-gateway">
+      <a class="brand" href="login.html">
+        <img src="imagenes.img/logo-udb.png" alt="Universidad Don Bosco">
+        <span class="brand-name">Back<span>To</span>Me</span>
+      </a>
+      <div class="form-icon" aria-hidden="true">⌂</div>
+      <h1>Bienvenido a BackToMe</h1>
+      <p class="form-lead">Objetos perdidos y encontrados de la comunidad UDB.</p>
+      <a class="primary-button" href="login.html">Iniciar sesión</a>
+      <p class="form-switch">¿Todavía no tienes cuenta? <a href="registro.html">Regístrate</a></p>
+      <p class="entry-message" id="entryMessage">Abriendo BackToMe…</p>
+    </main>
+
+    <script src="js/theme.js"></script>
+    <script>
+      let destino = "login.html";
+
+      try {
+        const sesion = JSON.parse(localStorage.getItem("sesionActual"));
+
+        if (sesion && typeof sesion === "object") {
+          destino = "dashboard.html";
+        }
+      } catch (error) {
+        // Si no hay una sesión legible, se abre el inicio de sesión.
+      }
+
+      window.location.replace(destino);
+    </script>
+  </body>
+</html>
