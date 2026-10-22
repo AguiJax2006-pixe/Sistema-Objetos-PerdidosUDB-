@@ -1,52 +1,50 @@
-# Mejoras de interfaz — BackToMe
+# BackToMe — objetos perdidos y encontrados UDB
 
-## Descripción
+Prototipo de la aplicación para ayudar a la comunidad universitaria a reportar, buscar y recuperar objetos.
 
-En esta parte del proyecto BackToMe, sistema web de objetos perdidos y encontrados de la Universidad Don Bosco (UDB), se realizaron mejoras en el diseño, la navegación y la presentación de las pantallas para ofrecer una experiencia más cómoda y organizada a los usuarios.
+## Ejecutar el prototipo
 
-## Mejoras realizadas
+1. Copia la carpeta `BackToMe` dentro de `htdocs` de XAMPP.
+2. Inicia Apache desde el panel de XAMPP.
+3. Abre `http://localhost/BackToMe/` y entra a **Iniciar sesión** o crea una cuenta.
+4. Después de iniciar sesión, la aplicación abre `dashboard.html`.
 
-### 1. Actualización de las pantallas de inicio de sesión y registro
+También se puede abrir `dashboard.html` desde un servidor web local si ya existe una sesión en ese navegador.
 
-Se modificó la presentación de las pantallas de inicio de sesión y registro para darles un diseño más ordenado y mantener una apariencia coherente con el resto del sistema.
+El escudo transparente de la Universidad Don Bosco se muestra sin letras en las pantallas de acceso y navegación, usando el archivo `imagenes.img/logo-udb.png`. El selector de tema está disponible en el inicio de sesión, registro y aplicación principal.
 
-También se incorporó un botón para mostrar y ocultar la contraseña, permitiendo al usuario comprobar los datos que escribe en el campo correspondiente.
+## Funciones disponibles en esta versión
 
-### 2. Incorporación del nombre BackToMe y del logo de la Universidad Don Bosco
+- Inicio con publicaciones de objetos perdidos y encontrados.
+- Búsqueda por nombre, descripción, categoría y ubicación, además de filtro por estado.
+- Publicación con foto, descripción, categoría, lugar y fecha.
+- Perfil con el nombre, correo y publicaciones del usuario que inició sesión.
+- Solicitudes recibidas y enviadas, con opción de aceptar o rechazar las recibidas.
+- Conversaciones locales asociadas a una publicación para coordinar la entrega.
+- Navegación adaptable a móvil, tablet y computadora.
+- Modo claro y oscuro con preferencia guardada en el navegador.
 
-Se agregó el nombre **BackToMe** y el logo de la Universidad Don Bosco a la interfaz para darle una identidad visual propia al proyecto y relacionarlo con la comunidad universitaria.
+## Base de datos preparada
 
-Además, se ajustaron elementos visuales para mantener una presentación más uniforme.
+El esquema inicial está en `database/schema.sql`. Incluye perfiles, confirmación de correo, categorías, objetos, rutas de imágenes, solicitudes, conversaciones, participantes, mensajes y recuperación de contraseña. Ejecuta el archivo desde MySQL Workbench conectado al servidor MySQL 8.0.
 
-### 3. Implementación del tema claro y oscuro
+Las fotos se almacenan como archivos; MySQL guarda su ruta y metadatos. La contraseña debe guardarse como hash desde el backend, y los tokens de correo solo como hash. El esquema todavía no conecta el prototipo ni envía correos.
+## Estado técnico
 
-Se incorporó una opción para alternar entre el tema claro y el tema oscuro.
+Esta versión mantiene el inicio de sesión y los datos del avance anterior en `localStorage`. Las publicaciones, solicitudes, fotos comprimidas y mensajes se guardan en el navegador que está usando la aplicación. Sirve como prototipo funcional de interfaz, pero los datos no se comparten entre dispositivos ni usuarios que usan navegadores distintos.
 
-Esta función permite cambiar los colores de la interfaz según las preferencias del usuario, ofreciendo dos alternativas de visualización.
+MySQL, una API/backend, verificación real de correo, un proveedor de mapas y React todavía no están conectados en este paquete. La navegación nueva se implementó con los archivos HTML, CSS y JavaScript que ya traía el avance para que pueda ejecutarse con XAMPP sin instalar herramientas adicionales.
 
-### 4. Adaptación del diseño para diferentes dispositivos
+El flujo principal se abre en `dashboard.html`, que conserva el nombre de la página principal del proyecto anterior.
 
-Se realizaron ajustes en la interfaz para facilitar su visualización en computadoras, tabletas y teléfonos móviles.
+## Integrantes
 
-También se trabajó en la navegación mediante un menú de hamburguesa, con el objetivo de aprovechar mejor el espacio disponible en pantallas pequeñas y facilitar el acceso a las diferentes secciones.
+- Andrea Michelle Jiménez Aguilar — JA262091
+- Kimberly Alexandra Rivera López — RL261989
 
-### 5. Organización del código HTML y CSS
 
-Se trabajó en la organización y estructura del código HTML y CSS para facilitar su lectura, comprensión y mantenimiento.
 
-Esta mejora permite localizar con mayor facilidad los elementos de las páginas y los estilos aplicados, haciendo más sencillo continuar trabajando en el proyecto.
 
-## Tecnologías utilizadas
 
-- **HTML5:** estructura de las pantallas.
-- **CSS3:** estilos, colores y adaptación de la interfaz.
-- **JavaScript:** funciones interactivas, como mostrar u ocultar la contraseña y gestionar el tema visual.
-- **Bootstrap:** herramientas y componentes para el diseño adaptable, donde se utilizan.
 
-## Resultado
 
-Estas mejoras contribuyen a que BackToMe tenga una interfaz más organizada, una identidad visual definida y opciones de navegación y visualización más cómodas para los usuarios.
-
-## Repositorio
-
-[BackToMe — Sistema de Objetos Perdidos y Encontrados UDB](https://github.com/AguiJax2006-pixe/Sistema-Objetos-PerdidosUDB-)
