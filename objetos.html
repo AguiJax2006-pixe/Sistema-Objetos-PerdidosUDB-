@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Buscar objetos | Objetos UDB</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-udb">
+    <div class="container">
+
+        <a class="navbar-brand" href="dashboard.html">
+            <img src="imagenes.img/logo-udb.png" alt="Universidad Don Bosco" style="height:42px;width:29px;object-fit:contain;margin-right:8px"> Objetos UDB
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menuPrincipal"
+            aria-controls="menuPrincipal"
+            aria-expanded="false"
+            aria-label="Mostrar menú"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard.html">
+                        Inicio
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="objetos.html">
+                        Buscar objetos
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="publicar.html">
+                        Publicar objeto
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="solicitudes.html">
+                        Solicitudes
+                    </a>
+                </li>
+
+                <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                    <button
+                        class="btn btn-light btn-sm"
+                        onclick="cerrarSesion()"
+                    >
+                        Cerrar sesión
+                    </button>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="container py-5">
+
+    <!-- ENCABEZADO -->
+    <div class="mb-4">
+        <h1>Buscar objetos</h1>
+
+        <p class="text-muted mb-0">
+            Consulta objetos perdidos y encontrados registrados
+            en la Universidad Don Bosco.
+        </p>
+    </div>
+
+
+    <!-- FILTROS -->
+    <section class="card p-4 mb-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h4 class="mb-1">Filtros de búsqueda</h4>
+                <p class="text-muted mb-0">
+                    Utiliza los filtros para encontrar un objeto.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="btn btn-outline-primary"
+                id="btnLimpiar"
+            >
+                Limpiar filtros
+            </button>
+        </div>
+
+
+        <div class="row g-3">
+
+            <!-- BUSCAR -->
+            <div class="col-12 col-lg-6">
+
+                <label for="buscar" class="form-label">
+                    Buscar
+                </label>
+
+                <input
+                    type="search"
+                    id="buscar"
+                    class="form-control"
+                    placeholder="Nombre o descripción del objeto..."
+                >
+
+            </div>
+
+
+            <!-- CATEGORÍA -->
+            <div class="col-12 col-md-6 col-lg-3">
+
+                <label for="filtroCategoria" class="form-label">
+                    Categoría
+                </label>
+
+                <select
+                    id="filtroCategoria"
+                    class="form-select"
+                >
+                    <option value="">Todas</option>
+                    <option value="Electrónica">Electrónica</option>
+                    <option value="Documentos">Documentos</option>
+                    <option value="Accesorios">Accesorios</option>
+                    <option value="Ropa">Ropa</option>
+                    <option value="Útiles">Útiles</option>
+                    <option value="Otros">Otros</option>
+                </select>
+
+            </div>
+
+
+            <!-- ESTADO -->
+            <div class="col-12 col-md-6 col-lg-3">
+
+                <label for="filtroEstado" class="form-label">
+                    Estado
+                </label>
+
+                <select
+                    id="filtroEstado"
+                    class="form-select"
+                >
+                    <option value="">Todos</option>
+                    <option value="Perdido">Perdido</option>
+                    <option value="Encontrado">Encontrado</option>
+                </select>
+
+            </div>
+
+
+            <!-- UBICACIÓN -->
+            <div class="col-12 col-md-6">
+
+                <label for="filtroUbicacion" class="form-label">
+                    Ubicación
+                </label>
+
+                <input
+                    type="text"
+                    id="filtroUbicacion"
+                    class="form-control"
+                    placeholder="Ej. Biblioteca, cafetería..."
+                >
+
+            </div>
+
+
+            <!-- FECHA -->
+            <div class="col-12 col-md-6">
+
+                <label for="filtroFecha" class="form-label">
+                    Fecha
+                </label>
+
+                <input
+                    type="date"
+                    id="filtroFecha"
+                    class="form-control"
+                >
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESULTADOS -->
+    <section>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <div>
+                <h4 class="mb-0">
+                    Objetos registrados
+                </h4>
+
+                <small class="text-muted" id="contadorResultados">
+                    0 resultados
+                </small>
+            </div>
+
+        </div>
+
+
+        <!-- POSIBLES COINCIDENCIAS -->
+        <div
+            id="alertaCoincidencias"
+            class="alert alert-info d-none"
+        >
+        </div>
+
+
+        <!-- CONTENEDOR -->
+        <div
+            id="contenedorObjetos"
+            class="row g-4"
+        >
+        </div>
+
+
+        <!-- SIN RESULTADOS -->
+        <div
+            id="sinResultados"
+            class="empty-state text-center p-5 d-none"
+        >
+
+            <div class="display-4 mb-3">
+                🔍
+            </div>
+
+            <h4>
+                No se encontraron objetos
+            </h4>
+
+            <p class="text-muted mb-0">
+                Intenta cambiar los filtros o realizar otra búsqueda.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="footer text-center">
+    <p>
+        Sistema de Objetos Perdidos y Encontrados -
+        Universidad Don Bosco
+    </p>
+</footer>
+
+
+<!-- MODAL EDITAR -->
+<div
+    class="modal fade"
+    id="modalEditar"
+    tabindex="-1"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Editar objeto
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Cerrar"
+                ></button>
+
+            </div>
+
+
+            <form id="formEditar">
+
+                <div class="modal-body">
+
+                    <input
+                        type="hidden"
+                        id="editarId"
+                    >
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <label
+                                for="editarNombre"
+                                class="form-label"
+                            >
+                                Nombre del objeto
+                            </label>
+
+                            <input
+                                type="text"
+                                id="editarNombre"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <label
+                                for="editarCategoria"
+                                class="form-label"
+                            >
+                                Categoría
+                            </label>
+
+                            <select
+                                id="editarCategoria"
+                                class="form-select"
+                                required
+                            >
+                                <option value="">Seleccione</option>
+                                <option value="Electrónica">Electrónica</option>
+                                <option value="Documentos">Documentos</option>
+                                <option value="Accesorios">Accesorios</option>
+                                <option value="Ropa">Ropa</option>
+                                <option value="Útiles">Útiles</option>
+                                <option value="Otros">Otros</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="col-12">
+
+                            <label
+                                for="editarDescripcion"
+                                class="form-label"
+                            >
+                                Descripción
+                            </label>
+
+                            <textarea
+                                id="editarDescripcion"
+                                class="form-control"
+                                rows="3"
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <label
+                                for="editarUbicacion"
+                                class="form-label"
+                            >
+                                Ubicación
+                            </label>
+
+                            <input
+                                type="text"
+                                id="editarUbicacion"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <label
+                                for="editarFecha"
+                                class="form-label"
+                            >
+                                Fecha
+                            </label>
+
+                            <input
+                                type="date"
+                                id="editarFecha"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <label
+                                for="editarEstado"
+                                class="form-label"
+                            >
+                                Estado
+                            </label>
+
+                            <select
+                                id="editarEstado"
+                                class="form-select"
+                                required
+                            >
+                                <option value="Perdido">
+                                    Perdido
+                                </option>
+
+                                <option value="Encontrado">
+                                    Encontrado
+                                </option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="mensajeEditar"
+                        class="mt-3"
+                    ></div>
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Guardar cambios
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="js/auth.js"></script>
+<script src="js/objetos.js"></script>
+
+</body>
+</html>
+
+

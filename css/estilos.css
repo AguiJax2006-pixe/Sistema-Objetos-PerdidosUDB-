@@ -1,0 +1,319 @@
+:root {
+  --azul-udb: #0056A6;
+  --azul-oscuro: #003B73;
+  --azul-medio: #0072CE;
+  --azul-claro: #EAF4FC;
+  --azul-suave: #F4F9FD;
+  --blanco: #FFFFFF;
+  --gris: #6C757D;
+  --gris-claro: #F5F7FA;
+  --texto: #263238;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-family:;
+        "Segoe UI",;
+        Arial,;
+        sans-serif;
+  background-color: var(--azul-suave);
+  color: var(--texto);
+}
+.navbar-udb {
+  background:;
+        linear-gradient(;
+            90deg,;
+            var(--azul-oscuro),;
+            var(--azul-udb);
+        );
+  padding: 12px 0;
+  box-shadow:;
+        0 2px 10px rgba(0, 0, 0, 0.12);
+}
+.navbar-udb .navbar-brand {
+  color: var(--blanco);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.navbar-udb .navbar-brand:hover {
+  color: var(--blanco);
+}
+.navbar-udb .nav-link {
+  color: var(--blanco);
+  font-weight: 500;
+  margin-left: 8px;
+  transition: all 0.3s ease;
+}
+.navbar-udb .nav-link:hover {
+  color: #B9DEFF;
+  transform: translateY(-1px);
+}
+.navbar-udb .nav-link.active {
+  color: #B9DEFF;
+}
+/* Botón del menú móvil */
+
+.navbar-toggler {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.navbar-toggler:focus {
+  box-shadow:;
+        0 0 0 0.15rem rgba(255, 255, 255, 0.25);
+}
+.hero {
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 70px 20px;
+  color: var(--blanco);
+  background:;
+
+        linear-gradient(;
+            135deg,;
+            var(--azul-oscuro),;
+            var(--azul-udb),;
+            var(--azul-medio);
+        );
+}
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.hero p {
+  font-size: 1.25rem;
+}
+.hero-text {
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0.95;
+}
+.btn-primary {
+  background-color: var(--azul-udb);
+  border-color: var(--azul-udb);
+  font-weight: 600;
+}
+.btn-primary:hover {
+  background-color: var(--azul-oscuro);
+  border-color: var(--azul-oscuro);
+}
+.btn-outline-primary {
+  color: var(--azul-udb);
+  border-color: var(--azul-udb);
+}
+.btn-outline-primary:hover {
+  background-color: var(--azul-udb);
+  border-color: var(--azul-udb);
+  color: var(--blanco);
+}
+/* Botón blanco utilizado sobre fondos azules */
+
+.hero .btn-light {
+  color: var(--azul-oscuro);
+  font-weight: 600;
+}
+.card {
+  border: none;
+  border-radius: 15px;
+  background-color: var(--blanco);
+  box-shadow:;
+        0 4px 15px rgba(0, 63, 120, 0.08);
+  transition:;
+        transform 0.3s ease,;
+        box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow:;
+        0 8px 25px rgba(0, 63, 120, 0.15);
+}
+.icono {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+/* =====================================================
+   TÍTULOS;
+===================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--azul-oscuro);
+  font-weight: 700;
+}
+/* En el Hero los títulos deben seguir siendo blancos */
+
+.hero h1 {
+  color: var(--blanco);
+}
+/* =====================================================
+   FORMULARIOS;
+===================================================== */
+
+.form-label {
+  color: var(--azul-oscuro);
+  font-weight: 600;
+}
+.form-control,
+.form-select {
+  border: 1px solid #CED8E2;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--azul-udb);
+  box-shadow:;
+        0 0 0 0.2rem rgba(0, 86, 166, 0.15);
+}
+/* =====================================================
+   ALERTAS;
+===================================================== */
+
+.alert {
+  border-radius: 10px;
+}
+/* =====================================================
+   DASHBOARD;
+===================================================== */
+
+.dashboard-card {
+  border: none;
+  border-top:;
+        4px solid var(--azul-udb);
+  border-radius: 12px;
+  transition:;
+        transform 0.3s ease,;
+        box-shadow 0.3s ease;
+}
+.dashboard-card:hover {
+  transform: translateY(-5px);
+}
+.dashboard-icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.dashboard-card h2 {
+  color: var(--azul-udb);
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+.dashboard-card h5 {
+  color: var(--azul-oscuro);
+}
+/* =====================================================
+   BADGES;
+===================================================== */
+
+.badge {
+  border-radius: 20px;
+  padding: 7px 12px;
+}
+/* =====================================================
+   SECCIONES;
+===================================================== */
+
+section {
+  position: relative;
+}
+.container {
+  max-width: 1200px;
+}
+/* =====================================================
+   FOOTER;
+===================================================== */
+
+.footer {
+  background:;
+        linear-gradient(;
+            90deg,;
+            var(--azul-oscuro),;
+            var(--azul-udb);
+        );
+  color: var(--blanco);
+  padding: 25px 15px;
+  margin-top: 40px;
+}
+.footer p {
+  margin: 0;
+}
+/* =====================================================
+   ENLACES;
+===================================================== */
+
+a {
+  color: var(--azul-udb);
+}
+a: hover {
+  color: var(--azul-oscuro);
+}
+/* =====================================================
+   BOTÓN CERRAR SESIÓN;
+===================================================== */
+
+.btn-light {
+  font-weight: 600;
+  border: none;
+}
+.btn-light:hover {
+  background-color: #EAF4FC;
+  color: var(--azul-oscuro);
+}
+/* =====================================================
+   RESPONSIVE - TABLETS;
+===================================================== */
+
+@media (max-width: 992px) {
+  .navbar-udb .nav-link {
+    margin-left: 0;
+    padding: 10px 0;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+}
+/* =====================================================
+   RESPONSIVE - CELULARES;
+===================================================== */
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 450px;
+    padding: 50px 20px;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .dashboard-card {
+    margin-bottom: 5px;
+  }
+}
+/* =====================================================
+   CELULARES PEQUEÑOS;
+===================================================== */
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.7rem;
+  }
+  .hero {
+    padding: 40px 15px;
+  }
+  .btn-lg {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

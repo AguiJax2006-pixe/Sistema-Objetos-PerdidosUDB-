@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#145c91">
+    <title>
+      BackToMe · Comunidad UDB
+    </title>
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="side-nav" aria-label="Navegación principal">
+        <a class="brand" href="#inicio">
+          <img class="udb-logo" src="imagenes.img/logo-udb.png" alt="Universidad Don Bosco">
+          <span class="brand-word">Back<span>To</span>Me</span>
+        </a>
+        <button class="nav-link active" data-view="inicio">
+          <span>
+            ⌂
+          </span>
+          Inicio
+        </button>
+        <button class="nav-link" data-view="buscar">
+          <span>
+            ⌕
+          </span>
+          Buscar objetos
+        </button>
+        <button class="nav-link" data-view="publicar">
+          <span>
+            ＋
+          </span>
+          Publicar objeto
+        </button>
+        <button class="nav-link" data-view="solicitudes">
+          <span>
+            ▤
+          </span>
+          Solicitudes
+          <b id="pendingBadge" class="nav-badge" hidden>
+            0
+          </b>
+        </button>
+        <button class="nav-link" data-view="chat">
+          <span>
+            ◌
+          </span>
+          Chat
+          <b id="chatBadge" class="nav-badge" hidden>
+            0
+          </b>
+        </button>
+        <button class="nav-link" data-view="perfil">
+          <span>
+            ♙
+          </span>
+          Perfil
+        </button>
+        <button class="side-account" onclick="cerrarSesion()">
+          <span class="mini-avatar" id="sideInitials">
+            BT
+          </span>
+          <span>
+            <strong id="sideName">
+              Mi perfil
+            </strong>
+            <small>
+              Cerrar sesión
+            </small>
+          </span>
+          <span class="logout-mark">
+            ↗
+          </span>
+        </button>
+      </aside>
+      <div class="app-main">
+        <header class="topbar">
+          <a class="brand mobile-brand" href="#inicio">
+            <img class="udb-logo" src="imagenes.img/logo-udb.png" alt="Universidad Don Bosco">
+            <span class="brand-word">Back<span>To</span>Me</span>
+          </a>
+          <div class="top-actions">
+            <button class="round-action theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema" title="Cambiar tema">
+              ☾
+            </button>
+            <button class="search-pill" data-view="buscar" aria-label="Buscar un objeto">
+              <span>
+                ⌕
+              </span>
+              <small>
+                Buscar un objeto...
+              </small>
+            </button>
+            <button class="round-action" data-view="solicitudes" aria-label="Ver solicitudes">
+              ♧
+            </button>
+            <button class="mini-avatar top-avatar" data-view="perfil" id="topInitials" aria-label="Abrir perfil">
+              BT
+            </button>
+          </div>
+        </header>
+        <main class="page-content">
+          <section class="screen active" id="view-inicio" aria-labelledby="homeTitle">
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow">
+                  COMUNIDAD UDB
+                </span>
+                <h1 id="homeTitle">
+                  Objetos de la comunidad
+                </h1>
+                <p>
+                  Encuentra lo que buscas o ayuda a alguien a recuperar lo suyo.
+                </p>
+              </div>
+              <button class="button primary" data-view="publicar">
+                ＋ Publicar objeto
+              </button>
+            </div>
+            <div class="feed-layout">
+              <div>
+                <div class="filter-row" aria-label="Filtrar objetos">
+                  <button class="filter active" data-filter="Todos">
+                    Todos
+                  </button>
+                  <button class="filter" data-filter="Perdido">
+                    Perdidos
+                  </button>
+                  <button class="filter" data-filter="Encontrado">
+                    Encontrados
+                  </button>
+                </div>
+                <div id="homeFeed" class="feed-list" aria-live="polite">
+                </div>
+              </div>
+              <aside class="feed-sidebar">
+                <div class="panel side-panel">
+                  <h2>
+                    Actividad para ti
+                  </h2>
+                  <div id="homeActivity">
+                  </div>
+                </div>
+                <div class="panel side-panel helper">
+                  <strong>
+                    ¿Encontraste algo?
+                  </strong>
+                  <p>
+                    Una foto y una ubicación pueden ayudar a que su dueño lo reconozca.
+                  </p>
+                  <button class="text-button" data-view="publicar">
+                    Reportar un objeto →
+                  </button>
+                </div>
+              </aside>
+            </div>
+          </section>
+          <section class="screen" id="view-buscar" aria-labelledby="searchTitle">
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow">
+                  EXPLORAR PUBLICACIONES
+                </span>
+                <h1 id="searchTitle">
+                  Buscar un objeto
+                </h1>
+                <p>
+                  Busca por nombre, categoría, descripción o lugar.
+                </p>
+              </div>
+            </div>
+            <div class="search-controls">
+              <input id="searchText" type="search" placeholder="Ej. mochila, llaves, biblioteca" aria-label="Buscar un objeto">
+              <select id="searchStatus" aria-label="Filtrar por estado">
+                <option value="">
+                  Todos
+                </option>
+                <option>
+                  Perdido
+                </option>
+                <option>
+                  Encontrado
+                </option>
+              </select>
+            </div>
+            <div id="searchCount" class="result-count" aria-live="polite">
+            </div>
+            <div id="searchResults" class="object-grid">
+            </div>
+          </section>
+          <section class="screen" id="view-publicar" aria-labelledby="publishTitle">
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow">
+                  NUEVA PUBLICACIÓN
+                </span>
+                <h1 id="publishTitle">
+                  Publicar un objeto
+                </h1>
+                <p>
+                  Agrega detalles para que la comunidad pueda reconocerlo.
+                </p>
+              </div>
+            </div>
+            <form id="publishForm" class="publish-layout">
+              <div class="panel form-panel">
+                <fieldset class="kind-picker">
+                  <legend>
+                    ¿Qué quieres reportar?
+                  </legend>
+                  <label class="kind-option selected">
+                    <input type="radio" name="estado" value="Perdido" checked>
+                    <span>
+                      🔎
+                    </span>
+                    <span>
+                      <strong>
+                        Perdí un objeto
+                      </strong>
+                      <small>
+                        Ayúdenme a encontrarlo
+                      </small>
+                    </span>
+                  </label>
+                  <label class="kind-option">
+                    <input type="radio" name="estado" value="Encontrado">
+                    <span>
+                      🤝
+                    </span>
+                    <span>
+                      <strong>
+                        Encontré un objeto
+                      </strong>
+                      <small>
+                        Ayúdame a encontrar a su dueño
+                      </small>
+                    </span>
+                  </label>
+                </fieldset>
+                <div class="form-grid">
+                  <label>
+                    Nombre del objeto
+                    <input name="nombre" required maxlength="80" placeholder="Ej. Mochila azul">
+                  </label>
+                  <label>
+                    Categoría
+                    <select name="categoria" required>
+                      <option value="">
+                        Seleccionar categoría
+                      </option>
+                      <option>
+                        Electrónica
+                      </option>
+                      <option>
+                        Documentos
+                      </option>
+                      <option>
+                        Accesorios
+                      </option>
+                      <option>
+                        Ropa
+                      </option>
+                      <option>
+                        Útiles
+                      </option>
+                      <option>
+                        Llaves
+                      </option>
+                      <option>
+                        Otros
+                      </option>
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  Descripción y detalles para reconocerlo
+                  <textarea name="descripcion" required maxlength="600" rows="4" placeholder="Color, marca, señas particulares...">
+                  </textarea>
+                </label>
+                <div class="form-grid">
+                  <label>
+                    Lugar
+                    <input
+                      name="ubicacion"
+                      type="text"
+                      maxlength="200"
+                      required
+                      placeholder="Ej. Edificio 4, aula 302, parqueo o cancha">
+                  </label>
+                  <label>
+                    Fecha aproximada
+                    <input name="fecha" type="date" required>
+                  </label>
+                </div>
+                <button class="button primary full" type="submit">
+                  Continuar con publicación
+                </button>
+                <div id="publishMessage" class="form-message" role="status">
+                </div>
+              </div>
+              <aside class="panel upload-panel">
+                <label for="objectPhoto" class="upload-box">
+                  <input id="objectPhoto" type="file" accept="image/*">
+                  <img id="photoPreview" alt="Vista previa de la foto">
+                  <span id="uploadPrompt">
+                    <span class="upload-icon">
+                      ▧
+                    </span>
+                    <strong>
+                      Agregar una foto
+                    </strong>
+                    <small>
+                      Una imagen clara facilita reconocer el objeto
+                    </small>
+                  </span>
+                </label>
+                <p>
+                  Evita incluir información personal visible en la imagen.
+                </p>
+              </aside>
+            </form>
+          </section>
+          <section class="screen" id="view-solicitudes" aria-labelledby="requestsTitle">
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow">
+                  SEGUIMIENTO
+                </span>
+                <h1 id="requestsTitle">
+                  Solicitudes
+                </h1>
+                <p>
+                  Revisa las solicitudes que enviaste y las que recibiste.
+                </p>
+              </div>
+            </div>
+            <div class="tab-row" role="tablist" aria-label="Mis solicitudes">
+              <button class="tab active" data-request-tab="recibidas" role="tab" aria-selected="true">
+                Recibidas
+                <span id="receivedCount" class="count-dot">
+                  0
+                </span>
+              </button>
+              <button class="tab" data-request-tab="enviadas" role="tab" aria-selected="false">
+                Enviadas
+                <span id="sentCount" class="count-dot">
+                  0
+                </span>
+              </button>
+            </div>
+            <div id="requestList" class="request-list" aria-live="polite">
+            </div>
+          </section>
+          <section class="screen" id="view-chat" aria-labelledby="chatTitle">
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow">
+                  COORDINA LA ENTREGA
+                </span>
+                <h1 id="chatTitle">
+                  Chats
+                </h1>
+                <p>
+                  Conversaciones relacionadas con tus solicitudes de objetos.
+                </p>
+              </div>
+            </div>
+            <div id="chatLayout" class="panel chat-layout">
+            </div>
+          </section>
+          <section class="screen" id="view-perfil" aria-labelledby="profileTitle">
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow">
+                  TU ESPACIO EN BACKTOME
+                </span>
+                <h1 id="profileTitle">
+                  Perfil
+                </h1>
+                <p>
+                  Tu actividad ayuda a la comunidad a recuperar pertenencias.
+                </p>
+              </div>
+              <button class="button secondary" id="editProfile">
+                Editar perfil
+              </button>
+            </div>
+            <div id="profileCard" class="panel profile-card">
+            </div>
+            <div class="section-heading">
+              <h2>
+                Mis publicaciones
+              </h2>
+            </div>
+            <div id="profileObjects" class="object-grid">
+            </div>
+          </section>
+          <dialog id="profileEditor" class="profile-editor" aria-labelledby="profileEditorTitle">
+            <div class="profile-editor-content">
+              <header class="profile-editor-header">
+                <div>
+                  <span class="eyebrow">TU ESPACIO EN BACKTOME</span>
+                  <h2 id="profileEditorTitle">Editar perfil</h2>
+                  <p>Administra tu nombre y tus publicaciones.</p>
+                </div>
+                <button class="editor-close" id="closeProfileEditor" type="button" aria-label="Cerrar">×</button>
+              </header>
+              <div class="profile-editor-tabs" role="tablist" aria-label="Opciones de edición">
+                <button class="tab active" type="button" role="tab" aria-selected="true" data-editor-tab="perfil">Editar perfil</button>
+                <button class="tab" type="button" role="tab" aria-selected="false" data-editor-tab="publicaciones">Editar publicaciones</button>
+              </div>
+              <section id="editorProfileSection" class="editor-section">
+                <form id="profileNameForm">
+                  <label class="editor-label" for="profileNameInput">Nombre</label>
+                  <input class="editor-input" id="profileNameInput" name="nombre" maxlength="100" required>
+                  <p class="editor-help">Solo cambiaremos tu nombre. Tu apellido y correo seguirán igual.</p>
+                  <div class="editor-actions">
+                    <button class="button secondary" type="button" data-close-editor>Cancelar</button>
+                    <button class="button primary" type="submit">Guardar nombre</button>
+                  </div>
+                </form>
+              </section>
+              <section id="editorPublicationsSection" class="editor-section" hidden>
+                <p class="editor-help">Cambia el nombre de una publicación o elimínala de la lista activa.</p>
+                <div id="editablePublications" class="editable-publications"></div>
+              </section>
+            </div>
+          </dialog>
+        </main>
+        <nav class="mobile-nav" aria-label="Navegación principal">
+          <button class="mobile-link active" data-view="inicio">
+            <span>
+              ⌂
+            </span>
+            Inicio
+          </button>
+          <button class="mobile-link" data-view="buscar">
+            <span>
+              ⌕
+            </span>
+            Buscar
+          </button>
+          <button class="mobile-link create-link" data-view="publicar">
+            <span>
+              ＋
+            </span>
+            Publicar
+          </button>
+          <button class="mobile-link" data-view="solicitudes">
+            <span>
+              ▤
+            </span>
+            Solicitudes
+          </button>
+          <button class="mobile-link" data-view="chat">
+            <span>
+              ◌
+            </span>
+            Chat
+          </button>
+          <button class="mobile-link" data-view="perfil">
+            <span>
+              ♙
+            </span>
+            Perfil
+          </button>
+        </nav>
+      </div>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite">
+    </div>
+    <script src="js/auth.js">
+    </script>
+    <script src="js/theme.js">
+    </script>
+    <script src="js/app.js">
+    </script>
+  </body>
+</html>
+
+

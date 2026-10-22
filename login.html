@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#145c91">
+    <title>Iniciar sesión · BackToMe</title>
+    <link rel="stylesheet" href="css/acceso.css">
+  </head>
+  <body>
+    <main class="auth-layout">
+      <aside class="story">
+        <a class="brand" href="index.html">
+          <img src="imagenes.img/logo-udb.png" alt="Universidad Don Bosco">
+          <span class="brand-name">Back<span>To</span>Me</span>
+        </a>
+        <div class="campus-art" aria-hidden="true"></div>
+
+        <div class="story-content">
+          <div class="eyebrow">COMUNIDAD UDB</div>
+          <h1>Lo que se pierde, puede volver.</h1>
+          <p class="story-copy">
+            Un espacio para reportar objetos, conectar con quien los encontró y coordinar su recuperación en el campus.
+          </p>
+          <div class="steps">
+            <div class="step"><span class="step-number">1</span>Publica o busca un objeto</div>
+            <div class="step"><span class="step-number">2</span>Envía una solicitud segura</div>
+            <div class="step"><span class="step-number">3</span>Coordina la entrega por chat</div>
+          </div>
+        </div>
+
+        <div class="story-foot">BackToMe · Objetos perdidos y encontrados</div>
+      </aside>
+
+      <button
+        class="theme-toggle"
+        type="button"
+        data-theme-toggle
+        aria-label="Cambiar tema"
+        title="Cambiar tema"
+      >
+        ☾
+      </button>
+
+      <section class="form-side">
+        <div class="form-wrap">
+          <a class="brand mobile-brand" href="index.html">
+            <img src="imagenes.img/logo-udb.png" alt="Universidad Don Bosco">
+            <span class="brand-name">Back<span>To</span>Me</span>
+          </a>
+          <div class="form-icon" aria-hidden="true">⌂</div>
+          <h2>Bienvenido de nuevo</h2>
+          <p class="form-lead">Inicia sesión con tus datos universitarios para continuar.</p>
+
+          <div id="mensajeError" class="alert alert-error" role="alert"></div>
+
+          <form id="formLogin" novalidate>
+            <div class="field">
+              <label for="correo">Correo electrónico</label>
+              <input
+                type="email"
+                id="correo"
+                placeholder="nombre@udb.edu.sv"
+                autocomplete="email"
+              >
+            </div>
+            <div class="field">
+              <label for="carnet">Carnet estudiantil</label>
+              <input
+                type="text"
+                id="carnet"
+                placeholder="Tu carnet"
+                autocomplete="username"
+              >
+            </div>
+            <div class="field">
+              <label for="password">Contraseña</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Ingresa tu contraseña"
+                autocomplete="current-password"
+              >
+            </div>
+            <button class="primary-button" type="submit">Iniciar sesión&nbsp; →</button>
+          </form>
+
+          <p class="form-switch">
+            ¿Primera vez en BackToMe? <a href="registro.html">Crear una cuenta</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/validaciones.js"></script>
+    <script src="js/login.js"></script>
+  </body>
+</html>
